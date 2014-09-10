@@ -25,11 +25,13 @@ masterWeightsVector <- c(12,8,8,8,6,6,4,4,2,2)
 #a color list based on frequency or by word order if ordered.colors is specified. **based off Column
 #masterColorVector <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 #Triad System
-masterColorVector <- c("#E67A17", "#E6B317", "#9A833D", "#7B5E04", "#03434C", "#080756", "#26575E", "#35346B","#107D8D","#2825A0","#F6A962")
+#masterColorVector <- c("#E67A17", "#E6B317", "#9A833D", "#7B5E04", "#03434C", "#080756", "#26575E", "#35346B","#107D8D","#2825A0","#F6A962")
+#Greg
+masterColorVector <- c("#CC0000", "#36A73B", "#CA7A20", "#FFBF00", "#690089", "#0028BB", "#B93DFF", "#557AFF","#AF51DB","#0092BB","#353535")
 #masterColorVector <- brewer.pal(8,"Dark2")
 #masterColorVector <- c(masterColorVector,c("#66CCFF","#FF0000","#000000"))
 
-masterColorVector <- brewer.pal(11,"Set3")
+#masterColorVector <- brewer.pal(11,"Set3")
 WordsColorVector <- character()
 WordsVector <- character()
 WordsFreqVector <- numeric();
@@ -51,11 +53,12 @@ WordsFreqVector <-c(WordsFreqVector,rep(wordFreq,length(words[!is.na(words)])))
 WordsColorVector <-c(WordsColorVector,rep(wordColor,length(words[!is.na(words)])))
 }
 
-
+#pdf(file="test.pdf",width=11,height=8.5)
 titleName <- "WordCloud1.png"
+set.seed(1234)
 png(titleName, width=12, height=8, units="in", res=500)
 ##FONT vfont=c("sans serif","plain"))
-wordcloud(WordsVector, WordsFreqVector, rot.per = .15,scale=c(3,.25), min.freq = 1,random.order=F,colors=WordsColorVector, ordered.colors=TRUE)
+wordcloud(WordsVector, WordsFreqVector, max.words = 200, rot.per=0.15,fixed.asp=T,scale=c(3,.25), min.freq = 1,random.order=F,random.color=F, use.r.layout=F,colors=WordsColorVector, ordered.colors=TRUE)
 #wordcloud(WordsVector, WordsFreqVector, max.words = 200, rot.per = .15,scale=c(3,.25), min.freq = 1,random.order=FALSE,colors=WordsColorVector,use.r.layout=F, ordered.colors=TRUE)
 dev.off()
 
